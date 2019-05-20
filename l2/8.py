@@ -5,8 +5,15 @@
 
 sequence = []
 
-num = int(input('Введите число:'))
+num = str(input('Введите число:'))
 sequence = input('Введите последовательность:')
+m=0
 
 for i in sequence.split(' '):
-    print(i)
+    n = str(i)
+    for j in range(len(n)):
+        if n[j].find(num) != -1:
+            m = m + 1
+        
+print('Число {} встречается {} раз'.format(num, m))
+
