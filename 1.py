@@ -1,7 +1,5 @@
 
 
-
-
 def multiplication(a, b):
     columns = []
     for i in range(1, a + 1):
@@ -9,6 +7,11 @@ def multiplication(a, b):
             columns.append([i,j])
 
     return columns
+
+
+def gen_table(i):
+    return ((lambda x: print(f'{x[0]} x {x[1]}'))(i))
+
 
 if __name__ == '__main__':
     while True:
@@ -27,5 +30,6 @@ if __name__ == '__main__':
         except ValueError:
             print("Введите натуральное число.")
 
-    lambda f: (for i in multiplication(a, b) : print(i))
+    for i in multiplication(a, b):
+        gen_table(i)
 
