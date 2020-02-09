@@ -1,35 +1,38 @@
 
 
-def multiplication(a, b):
+def multiplication(FIRST_M, SECONDARY_M):
+    '''
+    Генератор таблицы
+    '''
     columns = []
-    for i in range(1, a + 1):
-        for j in range(1, b + 1):
-            columns.append([i,j])
+    for i in range(1, FIRST_M + 1):
+        for j in range(1, SECONDARY_M + 1):
+            columns.append([i, j])
 
     return columns
 
 
-def gen_table(i):
-    return ((lambda x: print(f'{x[0]} x {x[1]}'))(i))
+def gen_table(row):
+    '''
+    Генератор вывода таблиц
+    '''
+    return (lambda x: print(f'{x[0]} x {x[1]}'))(row)
 
 
 if __name__ == '__main__':
     while True:
-        a = input("Введите первый множитель: ")
         try:
-            a = int(a)
+            FIRST_M = int(input("Введите первый множитель: "))
             break
         except ValueError:
             print("Введите натуральное число.")
 
     while True:
-        b = input("Введите второй множитель: ")
         try:
-            b = int(b)
+            SECONDARY_M = int(input("Введите второй множитель: "))
             break
         except ValueError:
             print("Введите натуральное число.")
 
-    for i in multiplication(a, b):
-        gen_table(i)
-
+    for row in multiplication(FIRST_M, SECONDARY_M):
+        gen_table(row)
