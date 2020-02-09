@@ -1,3 +1,6 @@
+'''
+Вывод таблицы умножения
+'''
 
 
 def multiplication(FIRSTM, SECONDARYM):
@@ -18,6 +21,9 @@ def gen_table(row):
     '''
     return (lambda x: print(f'{x[0]} x {x[1]}'))(row)
 
+
+FIRSTM = None
+SECONDARYM = None
 
 if __name__ == '__main__':
     while True:
