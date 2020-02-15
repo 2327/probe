@@ -1,8 +1,13 @@
 
 class ItemDiscount:
-    def __init__(self):
-        self.__x = 'a'
-        self.__y = 'b'
+    def __init__(self, discount=None):
+        self.__x = 5
+        self.__y = 'ggg'
+
+        if discount == None:
+            discount = 0
+        else:
+            self.discount = discount
 
     def set_x(self, x):
         self.__x = x
@@ -17,9 +22,10 @@ class ItemDiscount:
         return self.__y
 
 class ItemDiscountReport(ItemDiscount):
-    def get_parent_data(self):
-        print(self.get_x(), self.get_y())
+    def __str__(self):
+        result = self.get_x() - self.discount
+        return str(result)
 
-probe = ItemDiscountReport()
-probe.set_x('y')
-probe.get_parent_data()
+
+probe = ItemDiscountReport(discount=3)
+print(probe)
