@@ -23,8 +23,12 @@ def bank_deposit(deposit, time):
     """
     for i, item in enumerate(products):
         if (products[i]['begin_sum'] < deposit) and (deposit < products[i]['end_sum']):
-            print(f'{deposit} {item}')
-
+            if time == products[i]['v1']:
+                print(deposit * 0.07 * 0.5 + deposit)
+            elif time == products[i]['v2']:
+                print(deposit * 0.08 + deposit)
+            elif time == products[i]['v3']:
+                print((deposit * 0.075) * 2 + deposit)
 
 if __name__ == '__main__':
     while True:
