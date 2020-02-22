@@ -1,44 +1,26 @@
 '''
-Вывод таблицы умножения
+1. Написать программу, которая будет содержать функцию для получения имени файла из полного пути до него.
+При вызове функции в качестве аргумента должно передаваться имя файла с расширением. В функции необходимо
+реализовать поиск полного пути по имени файла, а затем «выделение» из этого пути имени файла (без расширения).
 '''
 
+import os
 
-def multiplication(first_multiplier, secondary_multiplier):
-    '''
-    Генератор таблицы
-    '''
-    columns = []
-    for i in range(1, first_multiplier + 1):
-        for j in range(1, secondary_multiplier + 1):
-            columns.append([i, j])
-
-    return columns
+FILE = 'gg.txt'
 
 
-def gen_table(row_content):
-    '''
-    Генератор вывода таблиц
-    '''
-    return (lambda x: print(f'{x[0]} x {x[1]}'))(row_content)
+def get_path(sfile):
+    """
 
+    """
+    for root, dirs, files in os.walk('/tmp'):
+        for file in files:
+            if file == sfile:
+                print(root, file)
+                file = file.split(".")
+                del file[-1]
+                print(''.join(file))
 
-FIRST_M = None
-SECONDARY_M = None
 
 if __name__ == '__main__':
-    while True:
-        try:
-            FIRST_M = int(input("Введите первый множитель: "))
-            break
-        except ValueError:
-            print("Введите натуральное число.")
-
-    while True:
-        try:
-            SECONDARY_M = int(input("Введите второй множитель: "))
-            break
-        except ValueError:
-            print("Введите натуральное число.")
-
-    for row in multiplication(FIRST_M, SECONDARY_M):
-        gen_table(row)
+    get_path(FILE)

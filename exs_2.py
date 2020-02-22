@@ -1,21 +1,40 @@
 """
-Программа выводит все файлы и директории в текущей директории
+Написать программу, которая запрашивает у пользователя ввод числа.
+На введенное число она отвечает сообщением, целое оно или дробное.
+Если дробное — необходимо далее выполнить сравнение чисел до и
+после запятой. Если они совпадают, программа должна возвращать
+значение True, иначе False.
 """
-import os
 
 
-def print_directory_contents(spath):
+def number_check(number):
     """
-    Функция принимает имя каталога и распечатывает его содержимое
-    в виде «путь и имя файла», а также любые другие файлы во вложенных каталогах.
+        Функция работет с введенным числом
     """
-    for i in os.listdir(spath):
-        if os.path.isfile(os.path.join(spath, i)):
-            print(f'\\_{i}')
-        elif os.path.isdir(os.path.join(spath, i)):
-            print_directory_contents(os.path.join(spath, i))
-            print(f'- {i} ')
+    if float(number).is_integer():
+        print('Введено целое число')
+        result = False
+    else:
+        number_parts = str(number).split('.')
+        if number_parts[0] > number_parts[1]:
+            print('Введено дробное число. Целая часть больше')
+            result = False
+        elif number_parts[0] < number_parts[1]:
+            print('Введено дробное число. Целая часть меньше')
+            result = False
+        else:
+            print('Введено дробное число. Целая часть равно дробной')
+            result = True
+
+    return result
 
 
 if __name__ == '__main__':
-    print_directory_contents('.git')
+    while True:
+        try:
+            NUMBER = float(input("Введите число: "))
+            break
+        except ValueError:
+            print("Неверный ввод. Введите число.")
+
+    print(number_check(NUMBER))

@@ -1,45 +1,29 @@
 """
-Разработать генератор случайных чисел. В функцию передавать начальное и конечное число генерации
-(нуль необходимо исключить). Заполнить этими данными список и словарь. Ключи словаря должны
-создаваться по шаблону: “elem_<номер_элемента>”. Вывести содержимое созданных списка и словаря.
+3. Создать два списка с различным количеством элементов. В первом должны быть записаны ключи,
+во втором — значения. Необходимо написать функцию, создающую из данных ключей и значений
+словарь. Если ключу не хватает значения, в словаре для него должно сохраняться значение None.
+Значения, которым не хватило ключей, необходимо отбросить.
 """
-import random
 
-RESULT_LIST = []
+FIST_LIST = ["a", "b", "c", "d", "e"]
+SECONDARY_LIST = ["1", "2", "3"]
 RESULT_DICTIONARY = {}
-FIRST_NUMBER = 0
-SECONDARY_NUMBER = 0
 
-def generate_random_number(start_number=FIRST_NUMBER, end_number=SECONDARY_NUMBER):
+
+def create_dictianary(fist_list, secondary_list):
     """
-    Generate random number exclude null
+    Создание словаря
     """
-    result = random.randint(start_number, end_number)
-    return generate_random_number() if result == 0 else result
+    for item_i, value_i in enumerate(fist_list):
+        try:
+            value_j = secondary_list[item_i]
+        except IndexError:
+            value_j = 'None'
+
+        RESULT_DICTIONARY[value_i] = value_j
+
+    return RESULT_DICTIONARY
 
 
 if __name__ == '__main__':
-    while True:
-        try:
-            FIRST_NUMBER = int(input("Введите первое число: "))
-            break
-        except ValueError:
-            print("Введите натуральное число.")
-
-    while True:
-        try:
-            SECONDARY_NUMBER = int(input("Введите второе число: "))
-            break
-        except ValueError:
-            print("Введите натуральное число.")
-
-    for i in range(FIRST_NUMBER, SECONDARY_NUMBER):
-        RESULT_LIST.append(generate_random_number(FIRST_NUMBER, SECONDARY_NUMBER))
-
-    print(f'Result list: {RESULT_LIST}')
-
-    for i, item in enumerate(RESULT_LIST):
-        elem = f'elem_{i}'
-        RESULT_DICTIONARY[elem] = RESULT_LIST[i]
-
-    print(f'Result list: {RESULT_DICTIONARY}')
+    print(create_dictianary(FIST_LIST, SECONDARY_LIST))
